@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# This script repteadedly executes the "wget" command to pull files from DVWA servers and then deletes the files
+
+echo -n "Enter the number of times you want to repeat the wget to websersers ->"
+read int
+
+#Initializing the count
+
+count=0
+
+while [ "$count" -lt "$int" ];
+do
+        count=$((count+1))
+
+## Below command will get the file from the webserservers and then delete it
+
+        echo executing the wget command
+        wget --delete-after wget 10.0.0.8
+        wget --delete-after wget 10.0.0.10
+        wget --delete-after wget 10.1.0.4
+done
+echo finally done with this routine

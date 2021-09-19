@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# This scripts repeatedly tries to ssh into DVWA servers
+# Take user input for many times they to try to SSH into DVWA servers
+
+echo -n "Enter the number of times you want to ssh into webservers -> "
+read int
+
+count=0
+# Initializing the count 
+
+while [ "$count" -lt "$int" ]; ## It will repeate that is SSH into DVWA servers until count is less than the value entered for "int"
+do
+        count=$((count + 1))
+
+        echo new count value is $count
+
+        echo ssh into web-1
+
+        ssh azureuser@10.0.0.8
+
+        echo ssh into web-2
+
+        ssh azureuser@10.0.0.10
+
+done
+echo done with trying to ssh into DVWA servers

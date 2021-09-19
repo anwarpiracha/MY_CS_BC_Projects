@@ -1,0 +1,45 @@
+---
+- name: Config Web VM with Docker
+
+## This script is part of complete ELK deployment solution and gets executed when "elk-deployment.yml" is executed. 
+## This part of the script deploys on the DVWA servers and can be executed separately to just deploy the DVWA servers.
+## Uncomment the below three lines of code starting from "hosts: webservers...." and run it as a separate ansible file if only
+## DVWA servers are to be installed.
+## Code in this script is joint effort of in class work for the security training bootcamp
+
+## hosts: webservers
+## become: true
+##  tasks:
+
+## Below lines install the docker.io on the host server
+   - name: Install docker.io
+    apt:
+      update_cache: yes
+      name: docker.io
+      state: present
+
+## Below lines of code install the python3
+  - name: Install pip3
+    apt:
+      name: python3-pip
+      state: present
+
+## Installing Python Docker Module
+  - name: Install Python Docker Module
+    pip:
+      name: docker
+      state: present
+
+## Installing container with dvwa image
+  - name: download and launch a docker web container
+    docker_container:
+      name: dvwa
+      image: cyberxsecurity/dvwa
+      restart_policy: always
+      published_ports: 80:80
+
+## Enabling the docke service
+  - name: Enable docker service
+    systemd:
+      name: docker
+      enabled: yes

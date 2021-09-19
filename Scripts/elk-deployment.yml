@@ -1,0 +1,29 @@
+---
+- hosts: all
+  become: true
+
+## Below will deploy DVWA on the webservers
+  tasks:
+    - name: Configure DVWA on these servers
+      include_role:
+        name: DVWA
+      when: inventory_hostname in groups ['webservers']
+
+## Below will deploy filebeat on the webserserver (Web-1/Web-2)
+    - name: Configure filebeat on the servers
+      include_role:
+        name: filebeat
+      when: inventory_hostname in groups ['webservers']
+
+## Below wil deploy metricbeat on the webservers (Web-1/Web-2)
+    - name: Confiure metricbeat on the server
+      include_role:
+        name: metricbeat
+      when: inventory_hostname in groups ['webservers']
+
+## Below will deploy ELASTIC stack on these servers
+    - name: Configure ELASTIC Stack on these servers
+      include_role:
+        name: ELK
+      when: inventory_hostname in groups ['ELK']
+

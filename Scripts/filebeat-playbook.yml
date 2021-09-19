@@ -1,0 +1,36 @@
+---
+
+## This script is part of complete ELK deployment solution and get's executed when "elk-deployment.yml" is executed.
+## This script deploys Filebeat on the DVWA servers and can be used to separately deploy Filebeat
+## For just deploying the Filebeat uncomment the below 4 lines of code starting from "-name: install...." and execute this as a separate file 
+## This script is combined effort of in class work during security training bootcamp
+
+##- name: installing and launching filebeat
+##  hosts: webservers
+##  become: yes
+##  tasks:
+
+  - name: download filebeat deb
+    command: curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.6.1-amd64.deb
+
+  - name: install filebeat deb
+    command: dpkg -i filebeat-7.6.1-amd64.deb
+
+  - name: drop in filebeat.yml
+    copy:
+      src: /etc/ansible/files/filebeat-config.yml
+      dest: /etc/filebeat/filebeat.yml
+
+  - name: enable and configure system module
+    command: filebeat modules enable system
+
+  - name: setup filebeat
+    command: filebeat setup
+
+  - name: start filebeat service
+    command: service filebeat start
+
+  - name: enable service filebeat on boot
+    systemd:
+      name: filebeat
+      enabled: yes

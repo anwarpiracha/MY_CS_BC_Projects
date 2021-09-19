@@ -1,0 +1,70 @@
+---
+
+## This script is part of complete ELK deployment solution and get's executed when "elk-deployment.yml" is executed.
+## This script deploys only the ELK server and can be executed separately.  For deploying just the ELK server uncomment 
+## the below five lines starting from "-name: Configure..." and run this as a separate ansible file
+## This script is combined effort of in class work during security training bootcamp
+
+##- name: Configure Elk VM with Docker
+##  hosts: ELK
+##  remote_user: azureuser
+##  become: true
+##  tasks:
+
+## Installation of docker.io on the ELK machine
+## Use apt module
+    - name: Install docker.io
+      apt:
+        update_cache: yes
+        force_apt_get: yes
+        name: docker.io
+        state: present
+
+## Installation of python3 module on ELK machine
+      # Use apt module
+    - name: Install python3-pip
+      apt:
+        force_apt_get: yes
+        name: python3-pip
+        state: present
+
+## Installation of docker module on the ELK machin
+      # Use pip module (It will default to pip3)
+    - name: Install Docker module
+      pip:
+        name: docker
+        state: present
+
+      # Use command module
+#    - name: Increase virtual memory
+#      command: sysctl -w vm.max_map_count=262144
+
+## Increasing the memory
+      # Use sysctl module
+    - name: use more memory
+      sysctl:
+        name: vm.max_map_count
+        value: "262144"
+        state: present
+        reload: yes
+
+## Installation of docker container image ELK
+      # Use docker_container module
+    - name: download and launch a docker elk container
+      docker_container:
+        name: ELK
+        image: sebp/elk:761
+        state: started
+        restart_policy: always
+        # Please list the ports that ELK runs on
+        published_ports:
+          -  5601:5601
+          -  9200:9200
+          -  5044:5044
+
+## Ensuring that the docker service is enabled after boot.
+      # Use systemd module
+    - name: Enable service docker on boot
+      systemd:
+        name: docker
+        enabled: yes
