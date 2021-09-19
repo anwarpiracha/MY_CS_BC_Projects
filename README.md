@@ -2,7 +2,7 @@
 
 The files in this repository were used to configure the network depicted below.
 
-![https://github.com/anwarpiracha/MY_CS_BC_Projects/blob/main/Images/Project-1.1.drawio.png =450x450](Images/Project-1.1.drawio.png)
+![https://github.com/anwarpiracha/MY_CS_BC_Projects/blob/main/Images/ELK-NetWork.PNG](Images/ELK-NetWork.PNG)
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the elk-deployment.yml file may be used to install only certain pieces of it, such as Filebeat.
 
@@ -105,6 +105,6 @@ make following changes in hosts file and add the ip address of all the DVWA serv
 - uncomment [webservers]
 - add ip addresses e.g: x.x.x.x ansible_python_interpreter=/usr/bin/python3
 
-add the below lines  for the ELK server and add the ip address of ELK server
+add the below lines in hosts file for the ELK server and add the ip address of ELK server
 - [ELK]
 - add ip addresses e.g: x.x.x.x ansible_python_interpreter=/usr/bin/python3
