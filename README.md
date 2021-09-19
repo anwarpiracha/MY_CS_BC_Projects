@@ -114,6 +114,6 @@ make following changes in the /etc/ansbile/ansible.cfg file this will provide th
 
 nano ansible.cfg
 
-remote_user = <userid>
+remote_user = userid
   
 
