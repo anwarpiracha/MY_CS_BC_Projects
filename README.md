@@ -60,7 +60,7 @@ The playbook implements the following tasks:
 - Download and luanch Docker ELK container impage
 - Increase virtual memory
 - Install Python3
-- _Enable Docker service after boot
+- Enable Docker service after boot
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
