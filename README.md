@@ -87,6 +87,13 @@ SSH into the control node and follow the steps below:
 - Update the hosts file to include ELK server
 - Run the playbook, and navigate to http://13.73.49.65:5601/app/kibana#/home to check that the installation worked as expected.
 
+Above will only deploy ELK server, to deploy the complete solution 
+- Copy the elk-deployment.yml file to /etc/ansible/
+- Update the hosts file to include webservers
+- Run the the playbook and check the following to see if complete solution is deployed
+- http://20.102.75.66/index.php  to check id the websersver are deployed
+- http://13.73.49.65:5601/app/kibana#/home to check if the ELK server is deployed.
+
 
 ### Below are some useful commands
 Execute the below command to download the ansibles from GitHub
