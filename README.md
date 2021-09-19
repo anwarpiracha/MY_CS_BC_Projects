@@ -98,7 +98,8 @@ Above will only deploy ELK server, to deploy the complete solution
 ### Below are some useful commands
 Execute the below command to download the ansibles from GitHub
 
-change directory to /etc/ansible/ and update the hosts file by running below command
+change directory to /etc/ansible/ and update the hosts file by running below command:
+
 nano hosts
 
 make following changes in hosts file and add the ip address of all the DVWA servers that you are going to deploy
@@ -108,3 +109,9 @@ make following changes in hosts file and add the ip address of all the DVWA serv
 add the below lines in hosts file for the ELK server and add the ip address of ELK server
 - [ELK]
 - add ip addresses e.g: x.x.x.x ansible_python_interpreter=/usr/bin/python3
+
+make following changes in the /etc/ansbile/ansible.cfg file this will provide the loginID for remote user
+nano ansible.cfg
+remote_user = <userid>
+  
+
