@@ -111,7 +111,9 @@ add the below lines in hosts file for the ELK server and add the ip address of E
 - add ip addresses e.g: x.x.x.x ansible_python_interpreter=/usr/bin/python3
 
 make following changes in the /etc/ansbile/ansible.cfg file this will provide the loginID for remote user
+
 nano ansible.cfg
+
 remote_user = <userid>
   
 
